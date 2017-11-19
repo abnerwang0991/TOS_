@@ -1,0 +1,777 @@
+@import "reset";
+@import "parameter";
+
+%subtitle {
+  font-size: $subtitle-font-size;
+  color: $title-color;
+}
+%parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+%flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%screen {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+}
+
+body {
+  padding-top: 50px;
+  font-family: $main-font;
+  font-size: $font-size;
+  color: $main-color;
+  line-height: 1.8;
+}
+nav {
+  &.navbar {
+    z-index: 9999;
+    border: none;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .logo {
+    text-indent: -99999px;
+    background: url(https://cdn-www.bluestacks.com/bs-images/ghost-of-the-tower_logo.png);
+    background-size: cover;
+    width: 200px;
+  }
+  .nav {
+    li {
+      a {
+        color: $nav-font-color !important;
+        transition: 0.3s;
+      }
+    }
+    &.navbar-nav {
+      li {
+        &.active {
+          a {
+            color: $hover-color !important;
+          }
+        }
+        a {
+          &:hover {
+            color: $hover-color !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+#hero {
+  .parallax {
+    background-image: url("https://i.imgur.com/wEPYAlA.jpg");
+    min-height: 400px;
+    @extend %parallax;
+    .screen {
+      @extend %screen;
+      height: 400px;
+      position: relative;
+      .hero-title {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        h1 {
+          font-size: 30px;
+          padding: 0;
+          margin: 0;
+          color: $hero-color;
+        }
+        h2 {
+          font-size: 20px;
+          color: $hero-color;
+          padding: 0;
+          margin: 0;
+        }
+      }
+      .pointer {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid $hero-color;
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        cursor: pointer;
+        transform: translateX(-50%);
+        span {
+          font-weight: bold;
+          position: relative;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          animation: flow 3s infinite;
+        }
+      }
+    }
+  }
+}
+
+.title {
+  height: 200px;
+  text-align: center;
+  padding-top: 100px;
+  h1 {
+    font-size: $title-font-size;
+    color: $title-color;
+    font-size: bold;
+  }
+}
+
+#story {
+  #history {
+    position: relative;
+    margin-bottom: 50px;
+    &::after {
+      content: "";
+      width: 6px;
+      height: 100%;
+      background-color: $title-color;
+      position: absolute;
+      top: 0;
+      left: 30px;
+      margin-left: -3px;
+      z-index: -1;
+    }
+    .generation {
+      width: 100%;
+      position: relative;
+      padding: 10px 25px 10px 60px;
+      height: 240px;
+      &::before {
+        content: "";
+        background: url("http://www.towerofsaviors.com.s3.amazonaws.com/2015/03/timeline_left_logo1.png") no-repeat;
+        width: 35px;
+        height: 35px;
+        display: block;
+        position: absolute;
+        top: 9px;
+        left: 12px;
+      }
+      .generation-title {
+        text-align: center;
+        background-color: $history-title-bg-color;
+        color: $history-title-color;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        position: relative;
+        transition: 0.3s;
+        &:hover {
+          background-color: $hover-color;
+        }
+        span {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+        }
+      }
+      .generation-content {
+        padding-left: 5px;
+        height: 0px;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  #leading-role {
+    .slideshow {
+      position: relative;
+      background-image: url("https://i.imgur.com/LnHIYaA.png");
+      min-height: 400px;
+      @extend %parallax;
+      .screen {
+        @extend %screen;
+        position: absolute;
+        height: 400px;
+      }
+      .slide {
+        position: relative;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: 1s;
+        img {
+          display: none;
+        }
+        &.show {
+          opacity: 1;
+          visibility: visible;
+        }
+        .role-box {
+          padding: 60px 40px;
+          position: absolute;
+          color: $slide-color;
+          h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: $slide-title-font-size;
+            color: $slide-title-color;
+          }
+        }
+      }
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: auto;
+        color: $slide-color;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 12px;
+        cursor: pointer;
+        transition: 0.6s;
+        &:hover {
+          background-color: rgba(256,256,256,0.1);
+        }
+      }
+      .next {
+        right: 0;
+      }
+      .dot {
+        position: absolute;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
+        span {
+          cursor:pointer;
+          height: 13px;
+          width: 13px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+          &.active, &:hover {
+            background-color: #717171;
+          }
+        }
+      }
+    }
+  }
+}
+
+#tutorial {
+  .tutor-video {
+    height: 300px;
+    margin-bottom: 30px;
+    @extend %flex;
+    iframe {
+      display: block;
+      width: 600px;
+      height: 300px;
+    }
+  }
+  .tutor-content {
+    .tutor-text {
+      margin: 60px 0 30px 0;
+      .tutor-box {
+        height: 230px;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid $tutor-border-color;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        padding: 20px;
+        position: relative;
+        &:hover {
+          .tutor-icon {
+            background-color: $hover-color;
+          }
+        }
+        .tutor-icon {
+          position: absolute;
+          top: -40px;
+          left: 20px;
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+          background-color: $tutor-title-color;
+          font-size: 50px;
+          color: $tutor-color;
+          line-height: 70px;
+          text-align: center;
+          transition: 0.3s;
+        }
+        h3 {
+          @extend %subtitle;
+          font-size: $desktop-subtitle-font-size;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+#card {
+  #intro {
+    .pill {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      a {
+        width: 33.3%;
+        color: #7D7D7D;
+        text-align: center;
+        margin: 5px 0;
+        text-decoration: none;
+        transition: 0.3s;
+        &:hover, &:focus {
+          color: $pill-hover-color;
+        }
+        &.line{
+          border-left: 1px solid #CFCFCF;
+        }
+      }
+    }
+    .info {
+      .info-content {
+        .info-photo {
+          height: 200px;
+          margin: 30px 0;
+          img {
+            width: 90%;
+            display: block;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% ,-50%);
+          }
+        }
+        .bar-box {
+          @extend %flex;
+          flex-direction: column;
+          height: 200px;
+          margin: 30px 0;
+          .bar {
+            height: 20px;
+            width: 90%;
+            font-size: $bar-font-size;
+            background-color: $bar-bg-color;
+            color: $bar-value-color;
+            margin: 20px;
+            box-sizing: border-box;
+            line-height: 20px;
+            padding: 0 5px;
+            position: relative;
+            .trait {
+              position: absolute;
+              top: 0;
+              left: 5px;
+              z-index: 1;
+            }
+            .value {
+              position: absolute;
+              top: 0;
+              right: 5px;
+              z-index: 1;
+              .bar-value {
+                font-size: 14px;
+              }
+            }
+            .bar-width {
+              display: inline-block;
+              width: 0;
+              height: 20px;
+              background-color: $bar-color;
+              position: absolute;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  #illus {
+    background-image: url("https://i.imgur.com/I68kPnB.jpg");
+    @extend %parallax;
+    .screen {
+      @extend %screen;
+      height: 600px;
+      margin: 0;
+    }
+    .illus-box {
+      @extend %flex;
+      flex-direction: column;
+      height: 200px;
+      color: $illus-color;
+      i {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+#contact {
+  #contact-way {
+    background-image: url("https://i.imgur.com/cKXXuCU.jpg");
+    @extend %parallax;
+    .screen {
+      @extend %screen;
+      height: 600px;
+      margin: 0;
+    }
+    .contact-box {
+      @extend %flex;
+      flex-direction: column;
+      height: 200px;
+      text-align: center;
+      color: $contact-color;
+      i {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  #contact-form {
+    margin-top: 50px;
+    input, select, button, textarea {
+      border-radius: 0;
+      font-family: $main-font;
+    }
+    button {
+      width: 100%;
+      color: $contact-color;
+      background-color: $contact-btn-bg-color;
+      font-family: $main-font;
+      border: none;
+      transition: 0.3s;
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  color: $footer-color;
+  padding: 5px;
+  margin-top: 50px;
+  p {
+    margin: 10px 0;
+  }
+  span {
+    transition: all 0.3s;
+    color: $footer-color;
+    display: block;
+    &:hover {
+      transform: translateY(-30%);
+      color: $hover-color;
+    }
+  }
+}
+
+@media only screen and (min-width:768px) {
+  %subtitle-desk {
+  font-size: $desktop-subtitle-font-size;
+  color: $title-color;
+}
+
+  body {
+    padding-top: 100px;
+    font-family: $main-font;
+    font-size: $desktop-font-size;
+    transition: 0.5s;
+  }
+
+  nav {
+    &.navbar {
+    }
+    .logo {
+      background: url(https://cdn-www.bluestacks.com/bs-images/ghost-of-the-tower_logo.png);
+      background-repeat: no-repeat;
+      background-size: 250px;
+      background-position: center center;
+      width: 250px;
+      height: 100px;
+      transition: 0.5s;
+      &.shrink {
+        background-size: 200px;
+        width: 200px;
+        height: 50px;
+      }
+    }
+    .nav {
+      li {
+        a {
+          color: $nav-font-color !important;
+          transition: 0.3s;
+          height: 100px;
+          line-height: 65px;
+          transition: 0.5s;
+          &.shrink {
+            height: 50px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  #hero {
+    .parallax {
+      min-height: 600px;
+      .screen {
+        height: 600px;
+        .hero-title {
+          h1 {
+            font-size: 50px;
+          }
+          h2 {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  .title {
+    h1 {
+      font-size: $desktop-title-font-size;
+    }
+  }
+
+  #story {
+    #history {
+      &::after {
+      left: 50%;
+      }
+      .generation {
+        width: 50%;
+        height: 150px;
+        padding: 10px 40px;
+        &::before {
+          display: none;
+        }
+        &::after {
+          content: "";
+          background: url("http://www.towerofsaviors.com.s3.amazonaws.com/2015/03/timeline_left_logo1.png") no-repeat;
+          width: 35px;
+          height: 35px;
+          display: block;
+          position: absolute;
+          top: 9px;
+          right: -17px;
+        }
+        .generation-title {
+          line-height: 28px;
+        }
+      }
+      .right {
+        left: 50%;
+        &::after {
+          left: -18px;
+        }
+      }
+    }
+
+    #leading-role {
+      .slideshow {
+        height: 500px;
+        .screen {
+          height: 500px;
+        }
+        .slide {
+          img {
+            display: block;
+            position: absolute;
+            width: 400px;
+            &.molly, &.andow {
+              top: 90px;
+              left: 50px;
+            }
+            &.shawn, &.dankon {
+              top: 90px;
+              right: 50px;
+            }
+            &.naiborie {
+              top: 120px;
+              right: 50px;
+            }
+          }
+          .role-box {
+            width: 60%;
+            top: 70px;
+            padding: 70px 60px;
+            &.right {
+              right: 0;
+            }
+            h3 {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #tutorial {
+    .tutor-video {
+      margin-bottom: 60px;
+      iframe {
+        display: block;
+        width: 600px;
+        height: 300px;
+      }
+    }
+    .tutor-content {
+      .tutor-text{
+        .tutor-box {
+          h3 {
+            @extend %subtitle-desk;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  #card {
+    #intro {
+      margin-bottom: 50px;
+      .pill {
+        margin: 0;
+        a {
+          width: 12.5%;
+          padding: 10px 0;
+          &.line {
+            border: none;
+          }
+        }
+      }
+      .info {
+        .info-content {
+          .info-photo {
+            height: 400px;
+            img {
+              height: auto;
+            }
+          }
+          .bar-box {
+            height: 400px;
+          }
+        }
+      }
+    }
+    #illus {
+      .screen {
+        height: 400px;
+      }
+      .illus-box {
+        height: 400px;
+        i {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  #contact {
+    #contact-way {
+      .screen {
+        height: 400px;
+      }
+      .contact-box {
+        height: 400px;
+        i {
+          font-size: 30px;
+        }
+      }
+    }
+    #contact-form {
+      margin-top: 100px;
+      button {
+        width: 30%;
+      }
+    }
+  }
+
+  footer {
+    padding: 10px;
+  }
+}
+
+.toEnlarge {
+  visibility: hidden;
+  &.enlarge {
+    visibility: visible;
+    animation: enlarge 1s;
+  }
+}
+
+.slideL {
+  visibility: hidden;
+  &.slideLeft {
+    visibility: visible;
+    animation: slideLeft 1s;
+  }
+}
+.slideR {
+  visibility: hidden;
+  &.slideRight {
+    visibility: visible;
+    animation: slideRight 1s;
+  }
+}
+.slideU {
+  visibility: hidden;
+  &.slideUp {
+    visibility: visible;
+    animation: slideUp 1s;
+  }
+}
+.fade {
+  opacity: 0;
+  transition: 1s;
+  &.fadeIn {
+    opacity: 1;
+  }
+}
+.bounce {
+  visibility: hidden;
+  &.bounceInDown {
+    visibility: visible;
+    animation: bounceInDown 1s;
+  }
+}
+
+@keyframes flow {
+  0% {padding-top: 0;}
+  50% {padding-top: 30px;}
+  100% {opacity: 0;}
+}
+
+@keyframes enlarge {
+  from {transform: scale(0, 0);}
+  to {transform: scale(1, 1);}
+}
+@keyframes slideLeft {
+  from {transform: translateX(70%);}
+  to {transform: translateX(0);}
+}
+
+@keyframes slideRight {
+  from {transform: translateX(-70%);}
+  to {transform: translateX(0);}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(70%);}
+  to {transform: translateY(0);}
+}
