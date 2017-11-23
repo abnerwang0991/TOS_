@@ -762,12 +762,12 @@ footer {
   to {transform: scale(1, 1);}
 }
 @keyframes slideLeft {
-  from {transform: translateX(70%);}
+  from {transform: translateX(15%);}
   to {transform: translateX(0);}
 }
 
 @keyframes slideRight {
-  from {transform: translateX(-70%);}
+  from {transform: translateX(-15%);}
   to {transform: translateX(0);}
 }
 
